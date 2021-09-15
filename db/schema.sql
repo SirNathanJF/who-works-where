@@ -8,7 +8,7 @@ CREATE TABLE department (
     PRIMARY KEY (id)
 );
 
-CREATE TABLE position (
+CREATE TABLE occupation (
     id INT AUTO_INCREMENT NOT NULL,
     title VARCHAR(30) NOT NULL,
     salary DECIMAL(65) NOT NULL,
@@ -16,20 +16,19 @@ CREATE TABLE position (
     PRIMARY KEY (id),
     FOREIGN KEY (department_id)
         REFERENCES department(id)
-        ON DELETE SET NULL
 );
 
 CREATE TABLE employee (
     id INT AUTO_INCREMENT NOT NULL,
     first_name VARCHAR(30) NOT NULL,
     last_name VARCHAR(30) NOT NULL,
-    position_id INT,
+    occupation_id INT,
     manager_id INT,
     PRIMARY KEY (id),
-    FOREIGN KEY (position_id)
-        REFERENCES position(id)
-        ON DELETE SET NULL,
-    FOREIGN KEY (manager_id)
-        REFERENCES employee(id)
-        ON DELETE SET NULL
-)
+  FOREIGN KEY (occupation_id)
+    REFERENCES occupation(id)
+    ON DELETE SET NULL,
+  FOREIGN KEY (manager_id)
+    REFERENCES employee(id)
+    ON DELETE SET NULL
+);
