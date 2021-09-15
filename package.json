@@ -1,0 +1,25 @@
+{
+  "name": "who-works-where",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SirNathanJF/who-works-where.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SirNathanJF/who-works-where/issues"
+  },
+  "homepage": "https://github.com/SirNathanJF/who-works-where#readme",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "inquirer": "^8.1.5",
+    "mysql2": "^2.3.0"
+  }
+}
