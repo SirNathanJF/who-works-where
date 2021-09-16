@@ -42,70 +42,55 @@ const initialPrompt = () => {
             'No Action'
         ]
     })
-    .then((answers) => {
-        const { choices } = answers; 
-  
-        if (choices === "View all Employees") {
-          viewAllEmployees();
-        }
-  
-        if (choices === "View all employees by Department") {
-          viewEmployeesByDepartment();
-        }
-  
-        if (choices === "View all employees by their Manager") {
-          viewEmployeesByManager();
-        }
-  
-        if (choices === "View all Positions") {
-          viewAllPositions();
-        }
-  
-        if (choices === "View all Departments") {
-          viewAllDepartments();
-        }
-  
-        if (choices === "View Salaries by Department") {
-          viewSalariesByDepartment();
-        }
-  
-        if (choices === "Add Employee") {
-          addEmployee();
-        }
-  
-        if (choices === "Add Department") {
-          addDepartment();
-        }
-  
-        if (choices === "Add Position") {
-          addPosition();
-        }
-  
-        if (choices === "Delete Employee") {
-          deleteEmployee();
-        }
-  
-        if (choices === "Delete Department") {
-          deleteDepartment();
-        }
-  
-        if (choices === "Delete Position") {
-          deletePosition();
-        }
-  
-        if (choices === "Update Employee Position") {
-          updatePosition();
-        }
+    .then(answer => {
+        switch (answer.choices) {
+            case 'View all Employees':
+                ViewAllEmployees();
+                break;
+            case 'View all Employees by Department':
+                viewByDepartment();
+                break;
+            case 'View all Employees by their Manager':
+                viewByManager();
+                break;
+            case 'View all Positions':
+                viewByPosition();
+                break;
+            case 'View all Departments':
+                viewAllDepartments();
+                break;
+            case 'View Salaries by Department':
+                viewDepartmentSalaries();
+                break;
+            case 'Add Employee':
+                addEmployee();
+                break;
+            case 'Add Department':
+                addDepartment();
+                break;
+            case 'Add Position':
+                addPosition();
+                break;
+            case 'Remove Employee':
+                removeEmployee();
+                break;
+            case 'Remove Department':
+                removeDepartment();
+                break;
+            case 'Remove Position':
+                removePosition();
+                break;
+            case 'Update Employee Position':
+                changeEmployeePosition();
+                break;
+            case 'Update the Manager that Oversees Employee':
+                changeOversight();
+                break;
+            case 'No Action':
+                console.log('Goodbye!');
+                connection.end()
 
-        if (choices === "Update the Manager that Oversees Employee") {
-            updateOversight();
-          }
-  
-        if (choices === "No Action") {
-            console.log('Goodbye!');
-          connection.end()
-      };
+        }
     });
-  };
-
+};
 initialPrompt();
