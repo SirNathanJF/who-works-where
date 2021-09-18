@@ -65,6 +65,11 @@ class db {
     })
   }
 
-
+  addDepartment(data) {
+    return connection.query('DELETE FROM department WHERE ?',
+    {
+        id: data.departmentId
+    })
+  }
 }
 module.exports = new db(connection);

@@ -148,5 +148,17 @@ const addEmployee = function () {
 };
 
 const addDepartment = function () {
-  
+  inquirer
+  .prompt(
+      {
+          name: 'departmentName',
+          type: 'input',
+          message: 'What is the department name?'
+      },
+  )
+  .then(answer => {
+      db.addDepartment(answer)
+      console.log(`${answer.departmentName} was added to the database.\n`)
+      initialPrompt();
+  })
 }
