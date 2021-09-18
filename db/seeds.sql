@@ -18,12 +18,12 @@ VALUES
 
 INSERT INTO employee (first_name, last_name, occupation_id, manager_id)
 VALUES
-    ('Rand', 'al-Thor', 1, null),
-    ('Sirus', 'Amory', 4, null),
-    ('Jahar', 'Narishma', 2, 1),
+    ('Rand', 'al-Thor', 2, 1),
+    ('Sirus', 'Amory', 4, 2),
+    ('Jahar', 'Narishma', 1, 1),
     ('Wilhelm', 'Ryan', 3, 1),
     ('Kvothe', 'Windcaller', 3, 1),
-    ('Moraine', 'Damodred', 5, 2),
-    ('Lan', 'Mandragoran', 6, 2),
+    ('Moraine', 'Damodred', 5, 3),
+    ('Lan', 'Mandragoran', 6, 3),
     ('Matrim', 'Cauthon', 7, 1),
-    ('Perrin', 'Aybara', 5, 2);
+    ('Perrin', 'Aybara', 5, 3);

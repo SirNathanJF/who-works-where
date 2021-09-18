@@ -54,5 +54,17 @@ class db {
       )
       .then(([rows]) => rows);
   }
+
+  addEmployee(data) {
+    return this.connection.query('INSERT INTO employee SET ?',
+    {
+      first_name: data.firstName,
+      last_name: data.lastName,
+      occupation_id: data.occupationId,
+      manager_id: data.managerId
+    })
+  }
+
+
 }
 module.exports = new db(connection);

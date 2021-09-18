@@ -84,31 +84,69 @@ const initialPrompt = () => {
 initialPrompt();
 
 const viewAllEmployees = function () {
-  db.viewAllEmployees().then((data) => console.table('\n',data,'\n'));
+  db.viewAllEmployees().then((data) => console.table("\n", data, "\n"));
   initialPrompt();
 };
 
 const viewByDepartment = () => {
-  db.viewByDepartment().then((data) => console.table('\n',data,'\n'));
+  db.viewByDepartment().then((data) => console.table("\n", data, "\n"));
   initialPrompt();
 };
 
 const viewByManager = function () {
-  db.viewByManager(2).then((data) => console.table('\n',data,'\n'));
+  db.viewByManager(2).then((data) => console.table("\n", data, "\n"));
   initialPrompt();
 };
 
 const viewAllPosition = function () {
-  db.viewAllPositions().then((data) => console.table('\n',data,'\n'));
+  db.viewAllPositions().then((data) => console.table("\n", data, "\n"));
   initialPrompt();
 };
 
 const viewAllDepartments = function () {
-  db.viewAllDepartments().then((data) => console.table('\n',data,'\n'));
+  db.viewAllDepartments().then((data) => console.table("\n", data, "\n"));
   initialPrompt();
 };
 
 const viewDepartmentSalaries = function () {
-  db.viewDepartmentSalaries().then((data) => console.table('\n',data,'\n'));
+  db.viewDepartmentSalaries().then((data) => console.table("\n", data, "\n"));
   initialPrompt();
+};
+
+const addEmployee = function () {
+  inquirer
+    .prompt([
+      {
+        name: "firstName",
+        type: "input",
+        message: "What is their first name?",
+      },
+      {
+        name: "lastName",
+        type: "input",
+        message: "What is their last name?",
+      },
+      {
+        name: "occupationId",
+        type: "input",
+        message: "What is their occupation?",
+      },
+      {
+        name: "managerId",
+        type: "list",
+        message: "Select their manager.",
+        choices: ["1", "2", "3"],
+      },
+    ])
+    .then((employee) => {
+      db.addEmployee(employee);
+      console.log(
+        `${employee.firstName} ${employee.lastName} was added to the database.\n`
+      );
+      initialPrompt();
+    });
+};
+
+const addDepartment = function () {
+  
 }
