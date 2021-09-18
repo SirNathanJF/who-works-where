@@ -19,7 +19,7 @@ const initialPrompt = () => {
         "View all Employees by their Manager",
         "View all Positions",
         "View all Departments",
-        "View Salaries by Department",
+        "View Total Salaries by Department",
         "Add Employee",
         "Add Department",
         "Add Position",
@@ -48,7 +48,7 @@ const initialPrompt = () => {
         case "View all Departments":
           viewAllDepartments();
           break;
-        case "View Salaries by Department":
+        case "View Total Salaries by Department":
           viewDepartmentSalaries();
           break;
         case "Add Employee":
@@ -107,3 +107,8 @@ const viewAllDepartments = function () {
   db.viewAllDepartments().then((data) => console.table('\n',data,'\n'));
   initialPrompt();
 };
+
+const viewDepartmentSalaries = function () {
+  db.viewDepartmentSalaries().then((data) => console.table('\n',data,'\n'));
+  initialPrompt();
+}

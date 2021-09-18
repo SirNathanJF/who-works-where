@@ -42,8 +42,15 @@ class db {
   viewAllDepartments() {
     return this.connection
       .promise()
+      .query("SELECT * FROM department")
+      .then(([rows]) => rows);
+  }
+
+  viewDepartmentSalaries() {
+    return this.connection
+      .promise()
       .query(
-        "SELECT * FROM department"
+        "SELECT department_id AS id, department.department_name AS department, SUM(salary) AS 'total salary' FROM occupation INNER JOIN department ON occupation.department_id = department.id GROUP BY occupation.department_id;"
       )
       .then(([rows]) => rows);
   }
