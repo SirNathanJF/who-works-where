@@ -149,16 +149,41 @@ const addEmployee = function () {
 
 const addDepartment = function () {
   inquirer
-  .prompt(
-      {
-          name: 'departmentName',
-          type: 'input',
-          message: 'What is the department name?'
-      },
-  )
-  .then(answer => {
-      db.addDepartment(answer)
-      console.log(`${answer.departmentName} was added to the database.\n`)
+    .prompt({
+      name: "departmentName",
+      type: "input",
+      message: "What is the department name?",
+    })
+    .then((answer) => {
+      db.addDepartment(answer);
+      console.log(`${answer.departmentName} was added to the database.\n`);
       initialPrompt();
-  })
-}
+    });
+};
+
+const addPosition = function () {
+  inquirer
+    .prompt([
+      {
+        name: "title",
+        type: "input",
+        message: "What`s the title of this position?",
+      },
+      {
+        name: "salary",
+        type: "number",
+        message: "What is the salary for this position?",
+      },
+      {
+        name: "department_id",
+        type: "list",
+        message: "Choose a department to add the position to.",
+        choices: ["IT", "Finance", "Sales"],
+      },
+    ])
+    .then((answer) => {
+      db.addPosition(answer);
+      console.log(`${answer.title} was added to the database.\n`);
+      initialPrompt();
+    });
+};

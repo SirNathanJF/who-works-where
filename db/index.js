@@ -56,20 +56,26 @@ class db {
   }
 
   addEmployee(data) {
-    return this.connection.query('INSERT INTO employee SET ?',
-    {
+    return this.connection.query("INSERT INTO employee SET ?", {
       first_name: data.firstName,
       last_name: data.lastName,
       occupation_id: data.occupationId,
-      manager_id: data.managerId
-    })
+      manager_id: data.managerId,
+    });
   }
 
   addDepartment(data) {
-    return connection.query('DELETE FROM department WHERE ?',
-    {
-        id: data.departmentId
-    })
+    return connection.query("DELETE FROM department WHERE ?", {
+      id: data.departmentId,
+    });
+  }
+
+  addPosition(data) {
+    return connection.query(`INSERT INTO occupation SET ?`, {
+      title: data.title,
+      salary: data.salary,
+      department_id: data.department_id,
+    });
   }
 }
 module.exports = new db(connection);
