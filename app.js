@@ -2,6 +2,7 @@ require("dotenv").config();
 const db = require("./db");
 const inquirer = require("inquirer");
 const consoleTable = require("console.table");
+const database = require("./db/connection")
 
 const logo = require("asciiart-logo");
 const config = require("./package.json");
@@ -210,4 +211,43 @@ const removeEmployee = function () {
         initialPrompt();
       });
   });
+};
+
+const changeEmployeePosition = async () => {
+  let employeeList = [];
+  let positionList = [];
+  await database.promise().query(`SELECT concat(first_name, " ", last_name) FROM employee`)
+          .then( ([result]) => {
+            result.forEach(element => {
+            employeeList.push(element[0]);
+            });
+          });
+  await database.promise().query(`SELECT title FROM occupation`)
+    .then( ([rows]) => {
+      rows.forEach(element => {
+        positionList.push(element[0]);
+      });
+    })
+  
+  await inquirer.prompt(
+        [
+          {
+            type: 'list',
+            name: 'employee',
+            choices: employeeList,
+            message: "Which employee's position do you want to update?"
+          },
+          {
+            type: 'list',
+            name: 'newposition',
+            choices: positionList,
+            message: "Which position to you want to assign the selected employee?"
+          }
+        ]
+      ).then( (response) => {
+        database.promise().query(`UPDATE employee
+                  SET occupation_id = (SELECT id FROM occupation WHERE title = '${response.newposition}')
+                  WHERE concat(first_name, " ", last_name) = '${response.employee}'`)
+        console.log(`Updated employee's position`)           
+    });
 };
