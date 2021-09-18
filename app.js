@@ -43,7 +43,7 @@ const initialPrompt = () => {
           viewByManager();
           break;
         case "View all Positions":
-          viewByPosition();
+          viewAllPosition();
           break;
         case "View all Departments":
           viewAllDepartments();
@@ -85,12 +85,22 @@ initialPrompt();
 
 const viewAllEmployees = function () {
   db.viewAllEmployees().then((data) => console.table(data));
+  initialPrompt();
+};
+
+const viewByDepartment = () => {
+  console.log('\n ------------------ \n');
+  db.viewByDepartment().then((data) => console.table(data));
+  console.log('\n ------------------ \n');
+  initialPrompt();
 };
 
 const viewByManager = function () {
   db.viewByManager(2).then((data) => console.table(data));
+  initialPrompt();
 };
 
-const viewByPosition = function () {
+const viewAllPosition = function () {
   db.viewAllPositions().then((data) => console.table(data));
+  initialPrompt();
 };
