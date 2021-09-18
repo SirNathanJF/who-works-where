@@ -187,3 +187,27 @@ const addPosition = function () {
       initialPrompt();
     });
 };
+
+const removeEmployee = function () {
+  db.selectAllEmployees().then((employees) => {
+    const employeeChoicesForDelete = employees.map((employee) => ({
+      value: employee.id,
+      name: `${employee.first_name} ${employee.last_name}`,
+    }));
+
+    inquirer
+      .prompt([
+        {
+          name: "employeeId",
+          type: "list",
+          message: "Who would you like to remove from the roster?",
+          choices: employeeChoicesForDelete,
+        },
+      ])
+      .then((answer) => {
+        db.deleteEmployee(answer);
+        console.log("Employee was removed from the database...\n");
+        initialPrompt();
+      });
+  });
+};

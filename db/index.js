@@ -4,6 +4,11 @@ class db {
     this.connection = connection;
   }
 
+  selectAllEmployees() {
+    return this.connection
+      .promise().query("SELECT * FROM employee")
+  }
+
   viewAllEmployees() {
     return this.connection
       .promise()
@@ -76,6 +81,13 @@ class db {
       salary: data.salary,
       department_id: data.department_id,
     });
+  }
+
+  removeEmployee(data) {
+    return this.connection.promise().query('DELETE FROM employee WHERE ?',
+    {
+        id: data.employeeId
+    })
   }
 }
 module.exports = new db(connection);
