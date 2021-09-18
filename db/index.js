@@ -19,12 +19,11 @@ class db {
       .then(([rows]) => rows);
   }
 
-  viewByManager(managerId) {
+  viewByManager() {
     return this.connection
       .promise()
       .query(
-        "SELECT * FROM employee LEFT JOIN occupation on occupation.id = employee.occupation_id LEFT JOIN department on department.id = occupation.department_id WHERE manager_id = ? ",
-        managerId
+        "SELECT * FROM employee LEFT JOIN occupation on occupation.id = employee.occupation_id LEFT JOIN department on department.id = occupation.department_id ORDER BY manager_id ASC;",
       )
       .then(([rows]) => rows);
   }

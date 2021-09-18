@@ -84,23 +84,21 @@ const initialPrompt = () => {
 initialPrompt();
 
 const viewAllEmployees = function () {
-  db.viewAllEmployees().then((data) => console.table(data));
+  db.viewAllEmployees().then((data) => console.table('\n',data,'\n'));
   initialPrompt();
 };
 
 const viewByDepartment = () => {
-  console.log('\n ------------------ \n');
-  db.viewByDepartment().then((data) => console.table(data));
-  console.log('\n ------------------ \n');
+  db.viewByDepartment().then((data) => console.table('\n',data,'\n'));
   initialPrompt();
 };
 
 const viewByManager = function () {
-  db.viewByManager(2).then((data) => console.table(data));
+  db.viewByManager(2).then((data) => console.table('\n',data,'\n'));
   initialPrompt();
 };
 
 const viewAllPosition = function () {
-  db.viewAllPositions().then((data) => console.table(data));
+  db.viewAllPositions().then((data) => console.table('\n',data,'\n'));
   initialPrompt();
 };
