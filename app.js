@@ -102,3 +102,8 @@ const viewAllPosition = function () {
   db.viewAllPositions().then((data) => console.table('\n',data,'\n'));
   initialPrompt();
 };
+
+const viewAllDepartments = function () {
+  db.viewAllDepartments().then((data) => console.table('\n',data,'\n'));
+  initialPrompt();
+};
